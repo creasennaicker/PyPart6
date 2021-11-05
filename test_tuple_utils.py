@@ -18,6 +18,7 @@ class TupleUtilsTest(unittest.TestCase):
             ['', '', '']
         )
         tuple_utils.tic_tac_toe_finish(board_in, 1, 2, 'X')
+        print(board_in)
         self.assertEqual(board_in, board_out)
 
     def test2_tic_tac_toe_finish(self):

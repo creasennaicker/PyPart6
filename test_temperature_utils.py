@@ -1,5 +1,6 @@
 import unittest
 import temperature_utils
+import temperature_utils_v2
 
 
 class TemperatureUtilsTest(unittest.TestCase):
@@ -14,6 +15,10 @@ class TemperatureUtilsTest(unittest.TestCase):
         for temp_in, expected in test_cases:
             with self.subTest(f"{temp_in} -> {expected}"):
                 self.assertEqual(expected, temperature_utils.convert_to_celsius(temp_in))
+
+
+
+
 
     def test_convert_to_fahrenheit(self):
         test_cases = [
@@ -38,5 +43,20 @@ class TemperatureUtilsTest(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test3_temperature_tuple(self):
-        temps_input = (1, 2, 3)
-        self.assertEqual(tuple(), temperature_utils.temperature_tuple(temps_input, "a"))
+        temps_input = (32, 68, 100, 104)
+        expected = ((32, 305.15), (68, 341.15), (100, 373.15), (104, 377.15))
+        actual = temperature_utils_v2.temperature_tuple(temps_input, "k")
+        self.assertEqual(expected, actual)
+
+
+
+    def test_convert_to_kelvin(self):
+        test_cases = [
+            (32, 305.15),
+            (68, 341.15),
+            (100, 373.15),
+            (104, 377.15)
+        ]
+        for temp_in, expected in test_cases:
+            with self.subTest(f"{temp_in} -> {expected}"):
+                self.assertEqual(expected, temperature_utils_v2.convert_to_kelvin(temp_in))
